@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import { auth, database } from './firebase';
 import './styles/App.css';
+import map from 'lodash/map';
 import CurrentUser from './components/CurrentUser'
 import SignIn from './components/SignIn';
 // import Navigation from './Navigation'
@@ -14,7 +15,9 @@ class App extends Component {
       menu: null,
       newMenu: ''
     };
-    this.dataRef = null;
+
+    //this variable needs to be change and set depending on what they would like to add or remove from the menu.interpolation on /menus that corresponds with button click.
+    this.menuRef = database.ref(`/menus`);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,16 +25,24 @@ class App extends Component {
 
   componentDidMount() {
     auth.onAuthStateChanged( (currentUser) => {
-      console.log('AUTH CHANGE', currentUser);
+      // console.log('AUTH CHANGE', currentUser);
       this.setState( {currentUser} )
+
+      this.menuRef.on('value', (snapshot) => {
+        console.log( snapshot.val() );
+        this.setState({
+          menuItems: snapshot.val()
+        });
+
+      });
     });
 
     // this gives us access to the specific limb we want to add or take away from
-    this.dataRef = database.ref('/menus')
+    // this.menuRef = database.ref('/menus')
     //create a connection to root of db at root db.ref()
 
     //*** need to use child_added here not value ***//
-    this.dataRef.on('value', (snapshot) => {
+    this.menuRef.on('value', (snapshot) => {
       // this console log is everytime the db is changed it gives you the value
       //this.setState is goingt o update the component to whatever is currently in db
       // that was changed
@@ -52,30 +63,40 @@ class App extends Component {
     this.setState({ newMenu });
   }
 
+
   handleSubmit( e ) {
     e.preventDefault();
     // ` string interpolation here to select which node we want to reference and change`
     //ALSO BRING CONLOG FROM ABOVE DOWN AND USE FOR VALIDATION
-    this.dataRef.child('/sides')
-              .push(this.state.newMenu)
+    // this.menuRef.child('/sides')
+    let node = 'desserts';
+    //which node to add or remove from
+    this.menuRef.child(`/${node}`).push(this.state.newMenu)
     this.setState({ newMenu: '' });
   }
 
   render() {
-    const { currentUser } = this.state;
+    const { currentUser, menuItems } = this.state;
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to React and Firebase</h2>
+          <h2>Skip the Line</h2>
         </div>
-        <p>{JSON.stringify(this.state.menu, null, 2)}</p>
+        <code>{JSON.stringify(this.state.menu, null, 2)}</code>
           <br />  <br />
           {/* //ternary with JUST ONE option */}
           { !currentUser && <SignIn />}
           { currentUser &&
-            <div><CurrentUser user={currentUser} /> </div> }
+            <div><CurrentUser user={currentUser} />
           <br />  <br />
-        <form className='App-form' onSubmit={this.handleSubmit} >
+          <code>Map over these elements </code>
+          {
+            map(menuItems, (item, key) =>  <div key={key}>{key}</div>)
+          }
+        </div> }
+
+          {/* FORM FOR ADDING MENU ITEM */}
+        <form onSubmit={this.handleSubmit} >
           <input
             placeholder="Enter name of menu item"
             type='text'
@@ -91,3 +112,6 @@ class App extends Component {
 
 
 export default App;
+
+
+/* In react the pattern is to get the information at the top of 'state' and pass it down as needed*/

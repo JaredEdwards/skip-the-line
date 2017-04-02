@@ -1,5 +1,6 @@
 .CurrentUser {
   border: 1px solid #ccc;
+  max-width: 400px;
   display: flex;
   justify-content: space-between;
 }
