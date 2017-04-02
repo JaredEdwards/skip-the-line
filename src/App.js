@@ -11,13 +11,17 @@ class App extends Component {
       data: null,
       newData: ''
     };
+    this.dataRef = null;
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   componentDidMount() {
+    // this gives us access to the specific limb we want to add or take away from
+    this.dataRef = database.ref('/menus')
     //create a connection to root of db at root db.ref()
-    database.ref().on('value', (snapshot) => {
+    this.dataRef.on('value', (snapshot) => {
       // this console log is everytime the db is changed it gives you the value
       //this.setState is goingt o update the component to whatever is currently in db
       // that was changed
@@ -36,8 +40,8 @@ class App extends Component {
 
   handleSubmit( e ) {
     e.preventDefault();
-    database.ref()
-              .child('/menus').child('/entree')
+    // ` string interpolation here to select which node we want to reference and change`
+    this.dataRef.child('/sides')
               .push(this.state.newData)
   }
 
