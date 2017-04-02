@@ -16,3 +16,7 @@ export default firebase;
 
 //export an instance of the firebase db
 export const database = firebase.database();
+//export authentication service
+export const auth = firebase.auth();
+//export the googleAuth (could use twitter facebook etc here )
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
