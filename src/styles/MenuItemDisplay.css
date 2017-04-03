@@ -1,0 +1,9 @@
+.menuItem {
+  border: 2px solid #CCC;
+  height: 100px;
+  width: 400px;
+  font-size: 20px;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 15px;
+}
