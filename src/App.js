@@ -10,21 +10,50 @@ import createFragment from 'react-addons-create-fragment' // ES6
 
 // import Navigation from './Navigation'
 
-class Div extends Component {
+class MenuDiv extends Component {
   constructor(props) {
     super(props);
   }
+
+  seeMenuItems( e ) {
+    console.log('clicked');
+  }
   render() {
-    // console.log(this.props.value);
+    const { itemName, seeMenuItems } = this.props;
+    // console.log(this.props);
     return (
       <div className="menuItem">
-        {this.props.name}
-        {/* {map(newItem, (item, key) =>  <div key={key}>{key}</div>) } */}
+        {itemName}
+        <br />
+        <button
+          onClick={this.seeMenuItems}
+          >See Category Items</button>
+
       </div>
     )
+  }
+} //END OF MENUDIV COMPONENT
 
+class MenuItemDiv extends Component {
+  render() {
+    const itemArray = createFragment(this.props.itemName);
+    return (
+      <div className="menuItem">
+        {
+          map(itemArray, (key, item) => {
+            return (
+              <div key={key}>
+                {key}
+                <button>+</button>
+                <button>-</button>
+              </div>
+            )//end of map return
+          })
+        }
+      </div>
+    ) // END OF RETURN
   }
-  }
+} //END OF MenuItemDiv COMPONENT
 
 class App extends Component {
   constructor(props){
@@ -32,23 +61,24 @@ class App extends Component {
     this.state = {
       currentUser: null,
       menu: null,
-      newMenu: ''
+      newMenu: '',
+      menuToDisplay: 'menus'
     };
-
     //this variable needs to be change and set depending on what they would like to add or remove from the menu.interpolation on /menus that corresponds with button click.
-    this.menuRef = database.ref(`/menus`);
+    //  ************************ //
+    let menuToDisplay = this.state.menuToDisplay;
+    this.menuRef = database.ref(`/${menuToDisplay}`);
+    // this.menuRef = database.ref(`/menus/desserts`);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.selectMenu = this.selectMenu.bind(this);
   };
-
-
 
   componentDidMount() {
     auth.onAuthStateChanged( (currentUser) => {
       // console.log('AUTH CHANGE', currentUser);
       this.setState( {currentUser} )
-
       this.menuRef.on('value', (snapshot) => {
         // console.log( snapshot.val() );
         this.setState({
@@ -56,21 +86,20 @@ class App extends Component {
         });
 
       });
-    });
+    }); //END OF AUTSTATECHANGED
 
     // this gives us access to the specific limb we want to add or take away from
     // this.menuRef = database.ref('/menus')
     //create a connection to root of db at root db.ref()
-
     //*** need to use child_added here not value ***//
-    this.menuRef.on('value', (snapshot) => {
-      // this console log is everytime the db is changed it gives you the value
-      //this.setState is goingt o update the component to whatever is currently in db
-      // that was changed
-      // console.log("CHANGE: ", snapshot.val() );
+    // this console log is everytime the db is changed it gives you the value
+    //this.setState is goingt o update the component to whatever is currently in db
+    // that was changed
+    // console.log("CHANGE: ", snapshot.val() );
+    //this needs to be tested against the value trying ****** to be sent for duplication
+    // console.log( snapshot.child('entree').exists() );
 
-      //this needs to be tested against the value trying ****** to be sent for duplication
-      // console.log( snapshot.child('entree').exists() );
+    this.menuRef.on('value', (snapshot) => {
 
       this.setState({
         menu: snapshot.val()
@@ -78,13 +107,39 @@ class App extends Component {
     });
   }; //END OF COMPONENT DID MOUNT
 
+  handleAddItem(key) {
+    const specific = this.props.itemName;
+    // console.log(specific);
+  }
+  // handleAddItem(key) {
+  //   const user = this.props.user
+  //   database.ref(`/menus/desserts`)
+  //   .child(key)
+  //   .child('quantity')
+  //   .child(user.uid)
+  //   .set(user.displayName)
+  // }
+  // handleRemoveItem(key) {
+  //   const user = this.props.user
+  //   database.ref(`/menus/desserts`)
+  //   .child(key)
+  //   .child('quantity')
+  //   .child(user.uid)
+  //   .remove(user.displayName)
+  // }
+
   handleChange( e ) {
     e.preventDefault();
     const newMenu = e.target.value;
     this.setState({ newMenu });
   } //END OF HANDLE CHANGE
 
-
+  // selectMenu( e ) {
+  //   e.preventDefault();
+  //   this.menuRef = database.ref(`/menus`);
+  //   let node = 'desserts'
+  //   console.log(this.menuRef);
+  // }
 
   handleSubmit( e ) {
     e.preventDefault();
@@ -98,32 +153,63 @@ class App extends Component {
   } //END OF HANDLE SUBMIT
 
   render() {
-    const { currentUser, menuItems } = this.state;
+    const { currentUser, menuItems, menu } = this.state;
     return (
       <div className="App">
         <div className="App-header">
           <h2>Skip the Line</h2>
         </div>
-        <code>{JSON.stringify(this.state.menu, null, 2)}</code>
+        <code>{JSON.stringify(this.state.menuItems, null, 2)}</code>
 
           <br />  <br />
           {/* //ternary with JUST ONE option */}
           { !currentUser && <SignIn />}
           { currentUser &&
-            <div><CurrentUser user={currentUser} />
+        <div><CurrentUser user={currentUser} />
           <br />  <br />
 
           <code>Map over these elements </code>
           <br /> <br />
-          { map(menuItems, (item, key) =>  <Div key={key} name={key} /> ) }
+
+          {
+            map(menuItems, (item, key) =>  {
+            return (
+              <MenuDiv
+                key={key}
+                itemName={key} />
+              ) //end return
+            })
+          }
 
         </div> }
-        <br />  <br />
+        <br /><br />
+
+        <code>Map over INTERNALS </code>
+        <br /> <br />
+
+        {
+          map(menuItems, (item, key) =>  {
+            // console.log(menuItems);
+            return (
+              <MenuItemDiv
+                key={key}
+                itemName={item}
+                // user={currentUser}
+                // handleAddItem={() => this.handleAddItem}
+                // handleRemoveItem={() => this.handleRemoveItem}
+                />
+              )//end return
+          } )
+        }
+
+        <button
+          onClick={this.selectMenu}>
+           Click for Desserts</button>
 
           {/* FORM FOR ADDING MENU ITEM */}
         <form onSubmit={this.handleSubmit} >
           <input
-            placeholder="Enter name of menu item"
+            placeholder="Enter name of menu item to add"
             className='App-form'
             type='text'
             value={this.state.newMenu}
