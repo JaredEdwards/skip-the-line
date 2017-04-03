@@ -5,7 +5,26 @@ import './styles/App.css';
 import map from 'lodash/map';
 import CurrentUser from './components/CurrentUser'
 import SignIn from './components/SignIn';
+
+import createFragment from 'react-addons-create-fragment' // ES6
+
 // import Navigation from './Navigation'
+
+class Div extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    // console.log(this.props.value);
+    return (
+      <div className="menuItem">
+        {this.props.name}
+        {/* {map(newItem, (item, key) =>  <div key={key}>{key}</div>) } */}
+      </div>
+    )
+
+  }
+  }
 
 class App extends Component {
   constructor(props){
@@ -23,13 +42,15 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
+
+
   componentDidMount() {
     auth.onAuthStateChanged( (currentUser) => {
       // console.log('AUTH CHANGE', currentUser);
       this.setState( {currentUser} )
 
       this.menuRef.on('value', (snapshot) => {
-        console.log( snapshot.val() );
+        // console.log( snapshot.val() );
         this.setState({
           menuItems: snapshot.val()
         });
@@ -55,13 +76,14 @@ class App extends Component {
         menu: snapshot.val()
       });
     });
-  };
+  }; //END OF COMPONENT DID MOUNT
 
   handleChange( e ) {
     e.preventDefault();
     const newMenu = e.target.value;
     this.setState({ newMenu });
-  }
+  } //END OF HANDLE CHANGE
+
 
 
   handleSubmit( e ) {
@@ -73,7 +95,7 @@ class App extends Component {
     //which node to add or remove from
     this.menuRef.child(`/${node}`).push(this.state.newMenu)
     this.setState({ newMenu: '' });
-  }
+  } //END OF HANDLE SUBMIT
 
   render() {
     const { currentUser, menuItems } = this.state;
@@ -83,22 +105,26 @@ class App extends Component {
           <h2>Skip the Line</h2>
         </div>
         <code>{JSON.stringify(this.state.menu, null, 2)}</code>
+
           <br />  <br />
           {/* //ternary with JUST ONE option */}
           { !currentUser && <SignIn />}
           { currentUser &&
             <div><CurrentUser user={currentUser} />
           <br />  <br />
+
           <code>Map over these elements </code>
-          {
-            map(menuItems, (item, key) =>  <div key={key}>{key}</div>)
-          }
+          <br /> <br />
+          { map(menuItems, (item, key) =>  <Div key={key} name={key} /> ) }
+
         </div> }
+        <br />  <br />
 
           {/* FORM FOR ADDING MENU ITEM */}
         <form onSubmit={this.handleSubmit} >
           <input
             placeholder="Enter name of menu item"
+            className='App-form'
             type='text'
             value={this.state.newMenu}
             onChange={this.handleChange} />
@@ -107,7 +133,7 @@ class App extends Component {
       </div>
     );
   };
-};
+}; //END OF APP COMPONENT
 
 
 

@@ -36,6 +36,17 @@
 .App-form {
   text-align: center;
   font-size: 1.4em;
+  max-width: 800px;
+}
+
+.menuItem {
+  border: 2px solid #CCC;
+  height: 80px;
+  width: 400px;
+  font-size: 20px;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 15px;
 }
 
 @keyframes App-logo-spin {
