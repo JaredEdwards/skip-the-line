@@ -6,13 +6,13 @@ const CurrentUser = ({ user }) => {
   return (
     <div className="CurrentUser">
       <img
-        className="CurrentUser--photo"
+        className="CurrentUser--photo img-responsive"
         src={ user.photoURL }
         alt={ user.displayName }
         />
         <div className="CurrentUser--identification">
-          <h3> { user.displayName } </h3>
-          <p> { user.email } </p>
+          <h2> { user.displayName } </h2>
+          <h3> { user.email } </h3>
           <button
             onClick={() =>auth.signOut()}>
             Sign Out

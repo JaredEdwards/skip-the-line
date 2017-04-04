@@ -20,7 +20,7 @@
 
 .App--header {
   background-color: #222;
-  height: 150px;
+  height: 120px;
   padding: 20px;
   color: white;
   text-align: center;
@@ -39,6 +39,11 @@
   max-width: 800px;
 }
 
+.btn-padded {
+  padding-top: 45px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
 .menuItem {
   border: 2px solid #CCC;
   height: 100px;
@@ -48,8 +53,23 @@
   margin: 0 auto;
   padding-top: 15px;
 }
+.left-box {
+  background-color: gray;
+  height: 95vh;
+}
+.right-box {
+  background-color: tan;
+  height: 95vh;
+}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.font {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.welcome-line {
+  font-size: 50px;
+}
+
+body {
+  padding: 10px;
 }

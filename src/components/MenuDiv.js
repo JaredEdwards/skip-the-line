@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import { auth, database } from '../firebase';
 import map from 'lodash/map';
-import '../styles/Menu.css';
+import '../styles/MenuDiv.css';
+
+import {NavbarHeader,
+  Navbar,
+  NavItem,
+  MenuItem,
+  Nav,
+  NavDropdown,
+  PanelGroup,
+  Accordion,
+  Panel
+} from 'react-bootstrap';
 
 class MenuDiv extends Component {
   constructor(props) {
@@ -13,15 +24,25 @@ class MenuDiv extends Component {
   }
   render() {
     const { itemName, seeMenuItems } = this.props;
+    const panelNumber = 0;
     // console.log(this.props);
     return (
-      <div className="menuItem">
+      <div className="menuItem list-group-item">
+        <div>
         {itemName}
         <br />
         <button
           onClick={this.seeMenuItems}
           >See Category Items</button>
+        </div>
 
+          <div>
+            <Accordion>
+              <Panel header={itemName} eventKey={panelNumber +1}>
+                {itemName}
+              </Panel>
+            </Accordion>
+          </div>
       </div>
     )
   }
