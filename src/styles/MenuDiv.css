@@ -1,8 +1,66 @@
-.menuItem {
-  height: 100px;
-  width: 700px;
+
+.flex-container-1 {
+  padding: 2px;
+  display: -webkit-flex;
+  dispay: flex;
+  width: 65%;
+  height: 15%;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
   font-size: 20px;
+  margin: auto;
+  border: 2px solid #ccc;
+}
+
+.flex-container-2 {
+  display: -webkit-flex;
+  dispay: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  align-content: flex-start;
+  font-size: 20px;
+  margin: auto;
+  border: 1px solid black;
+
+}
+
+.flex-item-large {
+  background-color: #ccc;
+  margin: 3px;
   text-align: center;
-  margin: 0 auto;
-  padding-top: 45px;
+}
+/* For flex items  width in container*/
+.item-1-width {
+    -webkit-flex: 3;
+    flex: 3;
+}
+.other-items-width {
+  -webkit-flex: 2;
+  flex: 2;
+}
+
+.flex-item-small {
+  background-color: #ccc;
+  width: 95%;
+  height: 95%;
+  text-align: center;
+  margin: 3px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*BUTTON STYLES*/
+
+.center-qty {
+  height: 100%;
+  width: 100%;
+}
+
+#qty {
+  border: 1px solid black;
 }

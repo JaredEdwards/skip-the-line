@@ -6,9 +6,9 @@ import CurrentUser from './components/CurrentUser';
 import SignIn from './components/SignIn';
 import MenuDiv from './components/MenuDiv';
 import MenuItemDisplay from './components/MenuItemDisplay';
-import AddToMenu from './components/AddToMenu';
+// import AddToMenu from './components/AddToMenu';
 import NavigationBar from './components/NavigationBar';
-import createFragment from 'react-addons-create-fragment'; // ES6
+// import createFragment from 'react-addons-create-fragment'; // ES6
 
 
 
@@ -23,7 +23,6 @@ class App extends Component {
             newMenu: '',
             menuToDisplay: 'menus'
         };
-
         let menuToDisplay = this.state.menuToDisplay;
         this.menuRef = database.ref(`/${menuToDisplay}`);
     }; // END OF CONSTRUCTOR
@@ -46,6 +45,7 @@ class App extends Component {
 
     render() {
         const {currentUser, menuItems, menu} = this.state;
+        console.log(menuItems);
         return (
             <div className="App col-md-12 container-fluid">
             <div className="jumbotron font">
@@ -61,10 +61,12 @@ class App extends Component {
             </div>
 
             <div className="col-md-9 col-sm-8 right-box">
+              <h1>take a look at the menu!</h1>
               <code>Map over these elements </code>
 
               {
                   map(menuItems, (item, key) =>  {
+                    // console.log(item);
                   return (
                     <MenuDiv
                       key={key}
@@ -75,7 +77,7 @@ class App extends Component {
               }
 
             </div>
-
+            <MenuItemDisplay />
         </div> // END OF APP WRAPPER
         ); //END OF RETURN
 

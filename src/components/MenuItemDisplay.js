@@ -1,19 +1,21 @@
 import React, {Component} from 'react'
-import {auth, database} from '../firebase';
+import {database} from '../firebase';
+import Wrapper from './Wrapper';
 import map from 'lodash/map';
 import '../styles/MenuItemDisplay.css'
+import '../styles/MenuDiv.css';
 import createFragment from 'react-addons-create-fragment'; // ES6
-import {NavbarHeader,
-  Navbar,
-  NavItem,
-  MenuItem,
-  Nav,
-  NavDropdown,
-  PanelGroup,
-  Accordion,
-  Panel
-} from 'react-bootstrap';
-import Collapsible from 'react-collapsible';
+// import {NavbarHeader,
+//   Navbar,
+//   NavItem,
+//   MenuItem,
+//   Nav,
+//   NavDropdown,
+//   PanelGroup,
+//   Accordion,
+//   Panel
+// } from 'react-bootstrap';
+// import Collapsible from 'react-collapsible';
 
 
 class MenuItemDiv extends Component {
@@ -46,11 +48,7 @@ class MenuItemDiv extends Component {
 }
 
         </div>
-        <Collapsible trigger="Start here">
-          <p>This is the collapsible content. It can be any element or React component you like.</p>
-          <p>It can even be another Collapsible component. Check out the next section!</p>
-        </Collapsible>
-
+          <Wrapper />
       </div>
 
     ) // END OF RETURN

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import '../styles/NavigationBar.css'
-import {NavbarHeader,
+import {
+  // NavbarHeader,
   Navbar,
   NavItem,
   MenuItem,
   Nav,
   NavDropdown,
-  PanelGroup,
-  Accordion,
-  Panel,
+  // PanelGroup,
+  // Accordion,
+  // Panel,
   Glyphicon
 } from 'react-bootstrap';
 

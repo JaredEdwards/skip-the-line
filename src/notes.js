@@ -152,3 +152,49 @@ react-bootstrap ACCORDIANS!
   <li className="list-group-item">Public Repos: {user.info.public_repos}</li>
   {user.info.blog && <li className="list-group-item">Blog: <a href={user.info.blog}> {user.info.blog}</a></li>}
 </div>
+
+
+
+
+
+
+OLD MENU.div
+
+class MenuDiv extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      qtyOrdered: 0
+    };
+    this.update = this.update.bind(this)
+  };
+
+  update( e ){
+    this.setState({currentEvent: e.type})
+  }
+
+  seeMenuItems( e ) {
+    console.log('clicked');
+  }
+  render() {
+    console.log(this.state);
+    const { itemName, seeMenuItems } = this.props;
+    const panelNumber = 0;
+    return (
+      <div className="menuItem list-group-item">
+        <div>
+        {itemName}
+        {/* <button
+          onClick={this.seeMenuItems}
+          onFocus={this.update}
+          >See Category Items</button> */}
+        </div>
+
+
+
+      </div>
+    )
+  }
+} //END OF MENUDIV COMPONENT
+
+export default MenuDiv;
