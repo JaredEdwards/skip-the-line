@@ -2,6 +2,7 @@ a {
   margin: 5px;
   padding: 10px;
   background-color: white;
+  font-size: 20px;
 }
 
 a, a:visited {
@@ -10,4 +11,8 @@ a, a:visited {
 
 a.active {
   color: orange;
+}
+
+.larger {
+  font-size: 20px;
 }

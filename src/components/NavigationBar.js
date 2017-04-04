@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/NavigationBar.css'
 import {NavbarHeader,
   Navbar,
   NavItem,
@@ -7,23 +8,24 @@ import {NavbarHeader,
   NavDropdown,
   PanelGroup,
   Accordion,
-  Panel
+  Panel,
+  Glyphicon
 } from 'react-bootstrap';
 
 class NavigationBar extends Component {
   render() {
     return (
       <div>
-      <Navbar collapseOnSelect className="navbar-top" >
+      <Navbar collapseOnSelect className="navbar-top larger" >
         <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#">Skip the Line!</a>
+          <Navbar.Brand >
+            <a  className="a" href="#">Skip the Line!</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">Link</NavItem>
+            <NavItem eventKey={1} href="#" >Link</NavItem>
             <NavItem eventKey={2} href="#">Link</NavItem>
             <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
               <MenuItem eventKey={3.1}>Action</MenuItem>
@@ -35,7 +37,7 @@ class NavigationBar extends Component {
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={1} href="#">Link Right</NavItem>
-            <NavItem eventKey={2} href="#">Link Right</NavItem>
+            <NavItem eventKey={2} href="#" id="numberItems"><Glyphicon glyph="glyphicon glyphicon-shopping-cart" />"NUMBER"</NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

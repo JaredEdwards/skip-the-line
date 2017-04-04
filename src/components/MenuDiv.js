@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { auth, database } from '../firebase';
 import map from 'lodash/map';
 import '../styles/MenuDiv.css';
-
+import Collapsible from 'react-collapsible'
 import {NavbarHeader,
   Navbar,
   NavItem,
@@ -17,12 +17,22 @@ import {NavbarHeader,
 class MenuDiv extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      qtyOrdered: 0,
+      currentEvent: ''
+    };
+    this.update = this.update.bind(this)
+  };
+
+  update( e ){
+    this.setState({currentEvent: e.type})
   }
 
   seeMenuItems( e ) {
     console.log('clicked');
   }
   render() {
+    console.log(this.state);
     const { itemName, seeMenuItems } = this.props;
     const panelNumber = 0;
     // console.log(this.props);
@@ -33,16 +43,12 @@ class MenuDiv extends Component {
         <br />
         <button
           onClick={this.seeMenuItems}
+          onFocus={this.update}
           >See Category Items</button>
         </div>
 
-          <div>
-            <Accordion>
-              <Panel header={itemName} eventKey={panelNumber +1}>
-                {itemName}
-              </Panel>
-            </Accordion>
-          </div>
+
+
       </div>
     )
   }
