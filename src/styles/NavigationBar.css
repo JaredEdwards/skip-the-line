@@ -16,3 +16,23 @@ a.active {
 .larger {
   font-size: 20px;
 }
+
+
+#brand {
+  font-size: 30px;
+  font-variant: small-caps;
+  font-weight: bold;
+  color: black;
+}
+
+.nav-perim {
+  padding: 18px 10px
+}
+
+.brand {
+  font-size: 40px;
+}
+
+.nav-items {
+  font-size: 28px;
+}

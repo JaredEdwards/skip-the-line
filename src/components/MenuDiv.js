@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
+import { database } from '../firebase';
 import '../styles/MenuDiv.css';
-import Wrapper from './Wrapper';
-// import { database } from '../firebase';
-// import map from 'lodash/map';
-// import Collapsible from 'react-collapsible'
-// import {
-  // NavbarHeader,
-  // Navbar,
-  // NavItem,
-  // MenuItem,
-  // Nav,
-  // NavDropdown,
-  // PanelGroup,
-  // Accordion,
-  // Panel
-// } from 'react-bootstrap';
 
 class MenuDiv extends Component {
+  constructor (props) {
+    super(props);
+    this.state ={
+      name: this.props.categoryName
+    }
+    this.getMenu =this.getMenu.bind(this);
+  }
+  getMenu(e) {
+    console.log(`${this.state.name} actually MenDiv sworked`);
+    // RENDER NEW CLASS HERE
+  }
+
   render(){
-    const { itemName } = this.props;
-    //^^ This may need to be inside wrapper
-    console.log(itemName);
+    const { categoryName } = this.props;
     return (
       <div className='flex-container-1'>
         <div
           className="flex-container-2 item-1-width flex-item-large">
-          <div className="flex-item-small">{itemName}</div>
+          <div className="flex-item-small">
+            <button
+              onClick={this.getMenu}
+              className="menu-button"
+              >{categoryName}</button></div>
         </div>
-        
-    </div>
+      </div>
     )
   }
 }
+
+
+//RENDER THE SPECIFC MENU HERE INSIDE THE MENU CONTAINER???
 
 export default MenuDiv;

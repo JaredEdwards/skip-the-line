@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {auth, database} from './firebase';
-import './styles/App.css';
-import map from 'lodash/map';
 import CurrentUser from './components/CurrentUser';
 import SignIn from './components/SignIn';
+import './styles/App.css';
+import map from 'lodash/map';
 import MenuDiv from './components/MenuDiv';
-import MenuItemDisplay from './components/MenuItemDisplay';
+import Home from './components/Home';
+import Wrapper from './components/Wrapper';
+// import MenuItemDisplay from './components/MenuItemDisplay';
 // import AddToMenu from './components/AddToMenu';
-import NavigationBar from './components/NavigationBar';
+import Routes from './config/Routes';
+import MenuContainer from './containers/MenuContainer';
 // import createFragment from 'react-addons-create-fragment'; // ES6
 
 
@@ -19,11 +22,12 @@ class App extends Component {
         super(props);
         this.state = {
             currentUser: null,
-            menu: null,
-            newMenu: '',
+            menu: '',
             menuToDisplay: 'menus'
         };
+
         let menuToDisplay = this.state.menuToDisplay;
+        this.getMenuItems = this.getMenuItems.bind(this);
         this.menuRef = database.ref(`/${menuToDisplay}`);
     }; // END OF CONSTRUCTOR
 
@@ -31,8 +35,8 @@ class App extends Component {
         auth.onAuthStateChanged((currentUser) => {
             this.setState({currentUser})
             this.menuRef.on('value', (snapshot) => {
-                // console.log( snapshot.val() );
-                this.setState({menuItems: snapshot.val()});
+                this.setState({menu: snapshot.val()});
+                // console.log(`MenuItems: `, this.state.menu );
             });
         }); //END OF AUTSTATECHANGED
 
@@ -42,16 +46,22 @@ class App extends Component {
         });
 
     }; //END OF COMPONENT DID MOUNT
+    getMenuItems() {
+      console.log(`${name} actually worked`);
+      // this.setState({hidden: ! this.state.isHidden})
+    }
 
     render() {
-        const {currentUser, menuItems, menu} = this.state;
-        console.log(menuItems);
+        const {currentUser, menu} = this.state;
         return (
-            <div className="App col-md-12 container-fluid">
-            <div className="jumbotron font">
+            <div className="container-fluid">
+              <div className="jumbotron font A">
                 <h1>Skip the Line</h1>
-            </div>
-            <NavigationBar />
+              </div>
+            <Routes />
+
+            <div className="App col-md-12 container-fluid">
+
             <div className="col-md-3 col-sm-4 left-box font">
               <div>
                 <h1 className="welcome-line">Welcome!</h1>
@@ -60,29 +70,51 @@ class App extends Component {
               </div>
             </div>
 
-            <div className="col-md-9 col-sm-8 right-box">
-              <h1>take a look at the menu!</h1>
-              <code>Map over these elements </code>
+            {/* <div className="col-md-9 col-sm-8 right-box"> */}
+            { currentUser ?
+              (<div>
+                  <MenuContainer>
+                  <code>Map over these elements </code>
 
-              {
-                  map(menuItems, (item, key) =>  {
-                    // console.log(item);
-                  return (
-                    <MenuDiv
-                      key={key}
-                      itemName={key} />
-                    ) //end return
-                  })
+                    {
+                      map(menu, (item, key) =>  {
+                      return (
+                        <MenuDiv
+                          ref={key}
+                          key={key}
+                          onClick={this.getMenuItems}
+                          categoryName={key} />
+                        ) //end return
+                      })
+                    }
 
-              }
+                </MenuContainer>
+            </div>)
+            :
+            (
 
-            </div>
-            <MenuItemDisplay />
-        </div> // END OF APP WRAPPER
+                <Welcome />
+
+            )}
+
+            {/* </div> */}
+        </div> // END OF APP class
+        </div>
+
         ); //END OF RETURN
 
     }; // END OF RENDER FUNCTION
 
 }; //END OF APP COMPONENT
+
+
+const Welcome = () => {
+    return (
+      <div>
+        <h1> # Welcome!</h1>
+        <h3> # Filler Message goes here</h3>
+      </div>
+    )
+}
 
 export default App;

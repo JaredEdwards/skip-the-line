@@ -64,3 +64,9 @@
 #qty {
   border: 1px solid black;
 }
+
+
+.menu-button {
+  height: 70%;
+  width: 80%;
+}

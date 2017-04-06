@@ -22,13 +22,9 @@ class MenuItemDiv extends Component {
     constructor(...args) {
         super(...args);
         this.state = {
-            open: true
+          
         };
     }
-    clicked(e) {
-        console.log("clicked");
-    }
-
     render() {
         const Button = () => <button>me</button>
         const itemArray = createFragment(this.props.itemName);
@@ -37,16 +33,14 @@ class MenuItemDiv extends Component {
 
             <div className="menuItem">
             {map(itemArray, (key, item) => {
+              console.log(itemArray);
                 return (
                     <div key={key}>
                         {key}
-                        <button onClick={this.clicked}>+</button>
-                        <button onClick={this.clicked}>-</button>
                     </div>
                 ) //end of map return
-            })
-}
-
+              })
+            }
         </div>
           <Wrapper />
       </div>
