@@ -29,7 +29,7 @@ class App extends Component {
         };
 
         let menuToDisplay = this.state.menuToDisplay;
-        this.getMenuItems = this.getMenuItems.bind(this);
+
         this.menuRef = database.ref(`/${menuToDisplay}`);
     }; // END OF CONSTRUCTOR
 
@@ -48,10 +48,7 @@ class App extends Component {
         });
 
     }; //END OF COMPONENT DID MOUNT
-    getMenuItems() {
-      console.log(`${name} actually worked`);
-      // this.setState({hidden: ! this.state.isHidden})
-    }
+
 
     render() {
         // currentUser,

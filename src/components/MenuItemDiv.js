@@ -21,23 +21,19 @@ import createFragment from 'react-addons-create-fragment'; // ES6
 class MenuItemDiv extends Component {
     constructor(...args) {
         super(...args);
-        this.state = {
-          
-        };
     }
     render() {
-        const Button = () => <button>me</button>
-        const itemArray = createFragment(this.props.itemName);
-        return (
-          <div>
 
+        console.log(this.props);
+        // const itemArray = createFragment(this.props.itemName);
+        const itemArray = this.props.itemName;
+        return (
+          <div className="flex-container-2 item-1-width">
             <div className="menuItem">
             {map(itemArray, (key, item) => {
-              console.log(itemArray);
                 return (
-                    <div key={key}>
-                        {key}
-                    </div>
+                        <h1>{key}</h1>
+
                 ) //end of map return
               })
             }

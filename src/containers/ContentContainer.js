@@ -6,7 +6,7 @@ import '../styles/App.css';
 import map from 'lodash/map';
 import MenuDiv from '../components/MenuDiv';
 import Wrapper from '../components/Wrapper';
-// import MenuItemDisplay from './components/MenuItemDisplay';
+import MenuItemDiv from '../components/MenuItemDiv';
 // import AddToMenu from './components/AddToMenu';
 import Routes from '../config/Routes';
 import MainContainer from './MainContainer';
@@ -21,8 +21,9 @@ class ContentContainer extends Component {
             menu: '',
             menuToDisplay: 'menus'
         }
+        this.getMenuItems = this.getMenuItems.bind(this);
         let menuToDisplay = this.state.menuToDisplay;
-        this.menuRef = database.ref(`/${menuToDisplay}`);
+        this.menuRef = database.ref(`/${menuToDisplay}/desserts`);
     }
     componentDidMount() {
         auth.onAuthStateChanged((currentUser) => {
@@ -34,10 +35,13 @@ class ContentContainer extends Component {
         }); //END OF AUTSTATECHANGED
 
     } //END OF COMPONENT DID MOUNT
+    getMenuItems() {
+      console.log(`${name} actually worked`);
+      // this.setState({hidden: ! this.state.isHidden})
+    }
 
     render() {
         const {currentUser, menu} = this.state;
-        console.log("MENU 4m CONTENT CONTAINER", menu);
         return (
             <div>
                 <UserContainer>
@@ -45,15 +49,25 @@ class ContentContainer extends Component {
                         ? <CurrentUser user={currentUser}/>
                         : <SignIn/>}
                 </UserContainer>
-                <MainContainer>
-                    {
+                <MainContainer className="flex-container-1">
+                    {/* {
                       map(menu, (item, key) => {
                         return (
                           <MenuDiv
                             ref={key}
                             key={key}
                             onClick={this.getMenuItems}
-                            categoryName={key}/>
+                            categoryName={key} />
+                        ) //end return
+                      })
+                    } */}
+                    <code>Map over the INTERNALS </code>
+                    {
+                      map(menu, (item, key) =>  {
+                      return (
+                        <MenuItemDiv
+                          key={key}
+                          itemName={item} />
                         ) //end return
                       })
                     }
