@@ -22,7 +22,6 @@ import {
 } from 'react-router-dom';
 
 import NavigationBar from '../components/NavigationBar'
-
 import Home from '../components/Home';
 import MenuDiv from '../components/MenuDiv';
 // import MenuItem from '../components/MenuItems';

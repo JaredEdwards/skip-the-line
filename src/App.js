@@ -10,7 +10,9 @@ import Wrapper from './components/Wrapper';
 // import MenuItemDisplay from './components/MenuItemDisplay';
 // import AddToMenu from './components/AddToMenu';
 import Routes from './config/Routes';
-import MenuContainer from './containers/MenuContainer';
+import MainContainer from './containers/MainContainer';
+import UserContainer from './containers/UserContainer';
+import ContentContainer from './containers/ContentContainer';
 // import createFragment from 'react-addons-create-fragment'; // ES6
 
 
@@ -21,7 +23,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentUser: null,
+            // currentUser: null,
             menu: '',
             menuToDisplay: 'menus'
         };
@@ -32,13 +34,13 @@ class App extends Component {
     }; // END OF CONSTRUCTOR
 
     componentDidMount() {
-        auth.onAuthStateChanged((currentUser) => {
-            this.setState({currentUser})
-            this.menuRef.on('value', (snapshot) => {
-                this.setState({menu: snapshot.val()});
-                // console.log(`MenuItems: `, this.state.menu );
-            });
-        }); //END OF AUTSTATECHANGED
+        // auth.onAuthStateChanged((currentUser) => {
+        //     this.setState({currentUser})
+        //     this.menuRef.on('value', (snapshot) => {
+        //         this.setState({menu: snapshot.val()});
+        //         // console.log(`MenuItems: `, this.state.menu );
+        //     });
+        // }); //END OF AUTSTATECHANGED
 
         //Get a snapshot of the current state of the database
         this.menuRef.on('value', (snapshot) => {
@@ -52,28 +54,29 @@ class App extends Component {
     }
 
     render() {
-        const {currentUser, menu} = this.state;
+        // currentUser,
+        const { menu} = this.state;
         return (
             <div className="container-fluid">
-              <div className="jumbotron font A">
+              <div className="jumbotron font App">
                 <h1>Skip the Line</h1>
               </div>
+
             <Routes />
 
-            <div className="App col-md-12 container-fluid">
 
-            <div className="col-md-3 col-sm-4 left-box font">
-              <div>
-                <h1 className="welcome-line">Welcome!</h1>
-                <h3>Sign in to view the menu</h3>
-                { currentUser ? <CurrentUser user={currentUser} /> : <SignIn /> }
-              </div>
-            </div>
+
+            {/* <div className="App col-md-12 container-fluid"> */}
+            {/* <ContentContainer> */}
+
+           {/* <UserContainer /> */}
+
+
 
             {/* <div className="col-md-9 col-sm-8 right-box"> */}
-            { currentUser ?
-              (<div>
-                  <MenuContainer>
+            {/* { currentUser ? */}
+              {/* <div>
+                  <MainContainer menu={menu}>
                   <code>Map over these elements </code>
 
                     {
@@ -88,18 +91,13 @@ class App extends Component {
                       })
                     }
 
-                </MenuContainer>
-            </div>)
-            :
-            (
+                </MainContainer>
+            </div> */}
 
-                <Welcome />
+          {/* } */}
 
-            )}
-
-            {/* </div> */}
+        {/* </ContentContainer> */}
         </div> // END OF APP class
-        </div>
 
         ); //END OF RETURN
 
