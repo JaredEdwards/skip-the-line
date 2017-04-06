@@ -23,23 +23,14 @@ class MenuItemDiv extends Component {
         super(...args);
     }
     render() {
-
-        console.log(this.props);
-        // const itemArray = createFragment(this.props.itemName);
-        const itemArray = this.props.itemName;
+        const { itemName } = this.props;
         return (
-          <div className="flex-container-2 item-1-width">
-            <div className="menuItem">
-            {map(itemArray, (key, item) => {
-                return (
-                        <h1>{key}</h1>
-
-                ) //end of map return
-              })
-            }
-        </div>
+          <div className="flex-container-1">
+          <div className="flex-container-2 item-1-width flex-item-large">
+                <h2 className="flex-item-small">{itemName}</h2>
+          </div>
           <Wrapper />
-      </div>
+        </div>
 
     ) // END OF RETURN
   }

@@ -2,7 +2,7 @@
 .flex-container-1 {
   padding: 2px;
   display: -webkit-flex;
-  dispay: flex;
+  display: flex;
   width: 65%;
   height: 15%;
   -webkit-justify-content: space-between;
@@ -16,7 +16,7 @@
 
 .flex-container-2 {
   display: -webkit-flex;
-  dispay: flex;
+  display: flex;
   -webkit-justify-content: space-between;
   justify-content: space-between;
   align-content: flex-start;

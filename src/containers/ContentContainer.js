@@ -49,19 +49,7 @@ class ContentContainer extends Component {
                         ? <CurrentUser user={currentUser}/>
                         : <SignIn/>}
                 </UserContainer>
-                <MainContainer className="flex-container-1">
-                    {/* {
-                      map(menu, (item, key) => {
-                        return (
-                          <MenuDiv
-                            ref={key}
-                            key={key}
-                            onClick={this.getMenuItems}
-                            categoryName={key} />
-                        ) //end return
-                      })
-                    } */}
-                    <code>Map over the INTERNALS </code>
+                <MainContainer>
                     {
                       map(menu, (item, key) =>  {
                       return (

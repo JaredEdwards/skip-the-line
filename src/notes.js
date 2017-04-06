@@ -198,3 +198,17 @@ class MenuDiv extends Component {
 } //END OF MENUDIV COMPONENT
 
 export default MenuDiv;
+
+
+<code>Map over the MENU DIV</code>}
+{/* {
+  map(menu, (item, key) => {
+    return (
+      <MenuDiv
+        ref={key}
+        key={key}
+        onClick={this.getMenuItems}
+        categoryName={key} />
+    ) //end return
+  })
+   */}
