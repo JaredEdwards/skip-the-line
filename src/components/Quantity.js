@@ -3,7 +3,7 @@ import '../styles/MenuDiv.css';
 
 class Quantity extends Component {
   render() {
-    return <div id="qty" className="center-text">{this.props.counter}</div>
+    return <div className="center-text">{this.props.counter}</div>
   }
 }
 

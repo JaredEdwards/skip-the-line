@@ -39,28 +39,35 @@
   flex: 2;
 }
 
-.flex-item-small {
+.flex-item-small-wrapper {
   background-color: #ccc;
-  width: 95%;
-  height: 95%;
+  width: 70%;
+  height: 70%;
   text-align: center;
   margin: 3px;
-  font-size: 30px;
+  font-size: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.flex-item-small {
+  background-color: #ccc;
+  width: 85%;
+  height: 85%;
+  text-align: center;
+  margin: 3px;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /*BUTTON STYLES*/
 
 .center-qty {
   height: 100%;
   width: 100%;
-}
-
-#qty {
-  border: 1px solid black;
 }
 
 .menu-button {

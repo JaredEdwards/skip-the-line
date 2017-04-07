@@ -17,11 +17,8 @@ class MenuDiv extends Component {
   componentDidMount(){
     this.menuRef.once('value', (snapshot) => {
       this.setState({menu: snapshot.val()});
-      // console.log(`MenuItems: `, this.state.menu );
     });
   }
-
-
   render(){
     const { categoryName, menu } = this.props;
     return (

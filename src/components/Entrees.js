@@ -21,8 +21,7 @@ class Entrees extends Component {
   componentDidMount() {
     auth.onAuthStateChanged((currentUser) => {
         this.setState({currentUser})
-        this.menuRef.once('value', (snapshot) => {
-          console.log(snapshot);
+        this.menuRef.on('value', (snapshot) => {
             this.setState({menu: snapshot.val()});
         });
     }); //END OF AUTSTATECHANGED
@@ -32,6 +31,9 @@ class Entrees extends Component {
           this.setState({menu: snapshot.val()});
       });
   }; //END OF COMPONENT DID MOUNT
+  componentWillUnmount(){
+    this.menuRef.off()
+  }
   render() {
 
 // TODO: menuToDisplay,

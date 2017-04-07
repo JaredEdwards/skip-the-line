@@ -23,7 +23,6 @@ class Desserts extends Component {
     auth.onAuthStateChanged((currentUser) => {
         this.setState({currentUser})
         this.menuRef.once('value', (snapshot) => {
-          console.log(snapshot);
             this.setState({menu: snapshot.val()});
             // console.log(`MenuItems: `, this.state.menu );
         });
@@ -34,6 +33,9 @@ class Desserts extends Component {
           this.setState({menu: snapshot.val()});
       });
   }; //END OF COMPONENT DID MOUNT
+  componentWillUnmount(){
+    this.menuRef.off()
+  }
   render() {
 
     // TODO:  menuToDisplay,

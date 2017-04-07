@@ -1,38 +1,6 @@
-a {
-  margin: 5px;
-  padding: 10px;
-  background-color: white;
-  font-size: 20px;
-}
-
-a, a:visited {
-  color: blue;
-}
-
-a.active {
-  color: orange;
-}
-
-.larger {
-  font-size: 20px;
-}
-
-
-#brand {
-  font-size: 30px;
-  font-variant: small-caps;
-  font-weight: bold;
-  color: black;
-}
-
-.nav-perim {
-  padding: 10px 6px
-}
-
 .brand {
-  font-size: 40px;
+  font-size: 25px;
 }
-
-.nav-items {
-  font-size: 28px;
+a:hover {
+  text-decoration: none;
 }

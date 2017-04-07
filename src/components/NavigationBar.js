@@ -12,24 +12,25 @@ import { NavLink } from 'react-router-dom';
 class NavigationBar extends Component {
   render() {
     return (
-    <Navbar collapseOnSelect className="nav-bar-all nav-perim">
+      //className="nav-bar-all nav-perim"
+    <Navbar collapseOnSelect>
       <Navbar.Header>
-        <Navbar.Brand className="brand">
-          <a href="#">Skip the Line</a>
+        <Navbar.Brand>
+          <p className="brand">Skip the Line</p>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
-        <Nav className="nav-items">
-          <NavItem><NavLink exact to='/'>Home</NavLink></NavItem>
-          <NavItem><NavLink to='/entrees'>Entrees</NavLink></NavItem>
-          <NavItem><NavLink to='/sides'>Sides</NavLink></NavItem>
-          <NavItem><NavLink to='/drinks'>Drinks</NavLink></NavItem>
-          <NavItem><NavLink to='/desserts'>Desserts</NavLink></NavItem>
-          <NavItem><NavLink to='/add'>Add</NavLink></NavItem>
+        <Nav bsStyle="tabs">
+          <NavItem className="brand"><NavLink exact to='/'>Home</NavLink></NavItem>
+          <NavItem className="brand"><NavLink to='/entrees'>Entrees</NavLink></NavItem>
+          <NavItem className="brand"><NavLink to='/sides'>Sides</NavLink></NavItem>
+          <NavItem className="brand"><NavLink to='/drinks'>Drinks</NavLink></NavItem>
+          <NavItem className="brand"><NavLink to='/desserts'>Desserts</NavLink></NavItem>
+          <NavItem className="brand"><NavLink to='/add'>Add</NavLink></NavItem>
         </Nav>
-        <Nav pullRight className="nav-items">
-          <NavItem><NavLink to='/summary'><span className="glyphicon glyphicon-shopping-cart"></span>{'  '}Checkout [numItems]</NavLink></NavItem>
+        <Nav bsStyle="tabs"  pullRight>
+          <NavItem className="brand"><NavLink to='/summary'><span className="glyphicon glyphicon-shopping-cart"></span>{'  '}Checkout [numItems]</NavLink></NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

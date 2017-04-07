@@ -26,7 +26,7 @@ button, input[type="submit"], .button {
   border: 1px solid hsla(191, 76%, 37%, 1);
   box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.20);
   color: white;
-  font-size: 0.8rem;
+  font-size: 2rem;
   font-weight: 300;
   outline: none;
   padding: 0.5rem 1rem;

@@ -25,6 +25,9 @@ class AddToMenu extends Component {
       });
     });
   } //END OF COMPONENT DID MOUNT
+  componentWillUnmount(){
+    this.menuRef.off()
+  }
 
   handleChange( e ) {
     e.preventDefault();
@@ -46,7 +49,7 @@ class AddToMenu extends Component {
       <div className="container-fluid border box">
         <div className='padded'>
           <h3>Select the menu to add to
-            <br />{node}
+            <br /><span className="node">{node.toUpperCase()}</span>
           </h3>
         <form onSubmit={this.handleSubmit}>
           <input
@@ -55,18 +58,24 @@ class AddToMenu extends Component {
             type='text'
             value={this.state.newMenu}
             onChange={this.handleChange} />
-          <input type='submit' className='btn btn-default submit-button button' />
+            <br />
+          <input type='submit' className='padded' />
         </form>
+        <br /><br />
         <button
+          className="padded "
           onClick={() => {this.setState({node: 'entree'})}}
           >Entree</button>
         <button
+          className="padded "
           onClick={() => {this.setState({node: 'sides'})}}
           >Sides</button>
         <button
+          className="padded "
           onClick={() => {this.setState({node: 'drinks'})}}
           >Drinks</button>
         <button
+          className="padded "
           onClick={() => {this.setState({node: 'desserts'})}}
           >Desserts</button>
         </div>

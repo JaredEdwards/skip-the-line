@@ -18,3 +18,7 @@
 .padded {
   padding:15px;
 }
+
+.node {
+  color: red;
+}

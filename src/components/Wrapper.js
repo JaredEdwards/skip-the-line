@@ -27,18 +27,18 @@ class Wrapper extends Component {
   render(){
     return (
       <div className="flex-container-2 other-items-width flex-item-large">
-      <div className="flex-item-small">
+      <div className="flex-item-small-wrapper">
         <button
-          className="flex-item-small"
+          className="flex-item-small-wrapper"
           onClick={this.incrementQuantity}>+</button>
       </div>
-      <div className="flex-item-small">
+      <div className="flex-item-small-wrapper">
         <button
-          className="flex-item-small"
+          className="flex-item-small-wrapper"
           onClick={this.decrementQuantity}>-</button>
       </div>
       { (this.state.counter >= 0) &&
-        <div id='a' className="flex-item-small">
+        <div id='a' className="flex-item-small-wrapper">
           <Quantity counter={this.state.counter} />
         </div>
       }

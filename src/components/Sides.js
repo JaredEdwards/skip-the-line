@@ -29,6 +29,9 @@ class Sides extends Component {
           });
       }); //END OF AUTSTATECHANGED
   } //END OF COMPONENT DID MOUNT
+  componentWillUnmount(){
+    this.menuRef.off()
+  }
   render() {
     const { menu, currentUser } = this.state;
     return (
