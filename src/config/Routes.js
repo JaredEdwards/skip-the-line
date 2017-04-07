@@ -1,24 +1,10 @@
 import React, { Component } from 'react';
 import '../styles/NavigationBar.css'
-import {
-  NavbarHeader,
-  Navbar,
-  NavItem,
-  MenuItem,
-  Collapse,
-  Nav,
-  NavDropdown,
-  PanelGroup,
-  Accordion,
-  Panel,
-  Glyphicon
-} from 'react-bootstrap';
+
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Link,
-  NavLink,
+  Switch
 } from 'react-router-dom';
 
 import NavigationBar from '../components/NavigationBar'
@@ -27,18 +13,11 @@ import Entrees from '../components/Entrees'
 import Sides from '../components/Sides';
 import Desserts from '../components/Desserts'
 import Drinks from '../components/Drinks'
-// import MenuItem from '../components/MenuItems';
 import Summary from '../components/Summary';
-// import Controller from '../components/Controller';
-
-
-
-// THIS IS ROUTER ROUTE GETS path=""
+import AddToMenu from '../components/AddToMenu'
 
 class Routes extends Component {
-  componentDidMount() {
-    console.log("Routes mounted");
-  }
+
   render() {
     return (
       <Router>
@@ -46,11 +25,12 @@ class Routes extends Component {
           <NavigationBar />
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route path='/entrees' component={Entrees} />
             <Route path='/sides' component={Sides} />
-            <Route path='/summary' component={Summary} />
             <Route path='/desserts' component={Desserts} />
             <Route path='/drinks' component={Drinks} />
-            <Route path='/entrees' component={Entrees} />
+            <Route path='/summary' component={Summary} />
+            <Route path='/add' component={AddToMenu} />
           </Switch>
         </div>
       </Router>

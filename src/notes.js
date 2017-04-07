@@ -74,7 +74,7 @@ handleSubmit( e ) {
 } //END OF HANDLE SUBMIT
 `
 
-MAP FUNCTION FOR MenuItemDisplay
+MAP FUNCTION FOR MenuItemDiv
 `
 
         <code>Map over INTERNALS </code>
@@ -84,7 +84,7 @@ MAP FUNCTION FOR MenuItemDisplay
           map(menuItems, (item, key) =>  {
             // console.log(menuItems);
             return (
-              <MenuItemDisplay
+              <MenuItemDiv
                 key={key}
                 itemName={item}
                 />

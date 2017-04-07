@@ -1,16 +1,8 @@
-import React, { Component,PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { auth } from '../firebase';
 import '../styles/CurrentUser.css';
 
 const CurrentUser = ({ user }) => {
-// class CurrentUser extends Component {
-
-  // componentDidMount(){
-  //   console.log("CURRENT USER MOUNTED");
-  // }
-  // render(){
-  //   const { user } = this.props.user;
-  //   console.log(`CURRENT USERCONT `, this.props);
   return (
     <div className="CurrentUser container-fluid">
       <img
@@ -25,7 +17,6 @@ const CurrentUser = ({ user }) => {
             onClick={() =>auth.signOut()}>
             Sign Out
           </button>
-
         </div>
     </div>
   );

@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { auth, database } from '../firebase';
-import map from 'lodash/map';
-import '../styles/MenuItemDisplay.css'
+import { database } from '../firebase';
+import '../styles/MenuItemDiv.css'
+import '../styles/AddToMenu.css'
+
 
 class AddToMenu extends Component {
   constructor( props ) {
     super( props );
     this.state ={
       newMenu: '',
-      menuToDisplay: 'menus'
+      menuToDisplay: 'menus',
+      node: 'desserts'
     };
     let menuToDisplay = this.state.menuToDisplay;
     this.menuRef = database.ref(`/${menuToDisplay}`);
@@ -30,37 +32,44 @@ class AddToMenu extends Component {
     this.setState({ newMenu });
   } //END OF HANDLE CHANGE
 
-  // selectMenu( e ) {
-  //   e.preventDefault();
-  //   this.menuRef = database.ref(`/menus`);
-  //   let node = 'desserts'
-  //   console.log(this.menuRef);
-  // }
-
   handleSubmit( e ) {
     e.preventDefault();
-    // ` string interpolation here to select which node we want to reference and change`
-    //ALSO BRING CONLOG FROM ABOVE DOWN AND USE FOR VALIDATION
-    // this.menuRef.child('/sides')
-    let node = 'drinks';
+    let node = this.state.node;
     //which node to add or remove from
     this.menuRef.child(`/${node}`).push(this.state.newMenu)
     this.setState({ newMenu: '' });
   } //END OF HANDLE SUBMIT
 
   render() {
-    console.log(this.props);
+    const { node } =this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} >
+      <div className="container-fluid border box">
+        <div className='padded'>
+          <h3>Select the menu to add to
+            <br />{node}
+          </h3>
+        <form onSubmit={this.handleSubmit}>
           <input
             placeholder="Enter name of menu item to add"
             className='App-form'
             type='text'
             value={this.state.newMenu}
             onChange={this.handleChange} />
-            <input type='submit' />
+          <input type='submit' className='btn btn-default submit-button button' />
         </form>
+        <button
+          onClick={() => {this.setState({node: 'entree'})}}
+          >Entree</button>
+        <button
+          onClick={() => {this.setState({node: 'sides'})}}
+          >Sides</button>
+        <button
+          onClick={() => {this.setState({node: 'drinks'})}}
+          >Drinks</button>
+        <button
+          onClick={() => {this.setState({node: 'desserts'})}}
+          >Desserts</button>
+        </div>
       </div>
     )
   }

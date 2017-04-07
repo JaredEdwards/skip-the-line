@@ -4,14 +4,9 @@ import CurrentUser from '../components/CurrentUser';
 import SignIn from '../components/SignIn';
 import '../styles/App.css';
 import map from 'lodash/map';
-import MenuDiv from '../components/MenuDiv';
-import Wrapper from '../components/Wrapper';
 import MenuItemDiv from '../components/MenuItemDiv';
-// import AddToMenu from './components/AddToMenu';
-import Routes from '../config/Routes';
 import MainContainer from '../containers/MainContainer';
 import UserContainer from '../containers/UserContainer';
-import ContentContainer from '../containers/ContentContainer';
 
 class Desserts extends Component {
   constructor(props) {
@@ -41,8 +36,8 @@ class Desserts extends Component {
   }; //END OF COMPONENT DID MOUNT
   render() {
 
-
-    const { menu, menuToDisplay, currentUser } = this.state;
+    // TODO:  menuToDisplay,
+    const { menu, currentUser } = this.state;
     return (
       <div className="App col-md-12 container-fluid">
         <UserContainer>

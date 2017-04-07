@@ -1,35 +1,13 @@
 import React, { Component } from 'react';
 import '../styles/NavigationBar.css'
 import {
-  NavbarHeader,
   Navbar,
   NavItem,
-  MenuItem,
-  Collapse,
-  Nav,
-  NavDropdown,
-  PanelGroup,
-  Accordion,
-  Panel,
-  Glyphicon
+  Nav
 } from 'react-bootstrap';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link,
-  NavLink,
-} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-
-import Home from './Home';
-import MenuDiv from './MenuDiv';
-// import MenuItems from './MenuItems';
-import Summary from './Summary';
-
-
-//THIS IS LINKS
-
+// TODO: Add interpolated string in checkout for number of items
 
 class NavigationBar extends Component {
   render() {
@@ -48,6 +26,7 @@ class NavigationBar extends Component {
           <NavItem><NavLink to='/sides'>Sides</NavLink></NavItem>
           <NavItem><NavLink to='/drinks'>Drinks</NavLink></NavItem>
           <NavItem><NavLink to='/desserts'>Desserts</NavLink></NavItem>
+          <NavItem><NavLink to='/add'>Add</NavLink></NavItem>
         </Nav>
         <Nav pullRight className="nav-items">
           <NavItem><NavLink to='/summary'><span className="glyphicon glyphicon-shopping-cart"></span>{'  '}Checkout [numItems]</NavLink></NavItem>
