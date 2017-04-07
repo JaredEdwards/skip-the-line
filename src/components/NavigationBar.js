@@ -44,7 +44,10 @@ class NavigationBar extends Component {
       <Navbar.Collapse>
         <Nav className="nav-items">
           <NavItem><NavLink exact to='/'>Home</NavLink></NavItem>
-          <NavItem><NavLink to='/menu'>Menu</NavLink></NavItem>
+          <NavItem><NavLink to='/entrees'>Entrees</NavLink></NavItem>
+          <NavItem><NavLink to='/sides'>Sides</NavLink></NavItem>
+          <NavItem><NavLink to='/drinks'>Drinks</NavLink></NavItem>
+          <NavItem><NavLink to='/desserts'>Desserts</NavLink></NavItem>
         </Nav>
         <Nav pullRight className="nav-items">
           <NavItem><NavLink to='/summary'><span className="glyphicon glyphicon-shopping-cart"></span>{'  '}Checkout [numItems]</NavLink></NavItem>

@@ -20,7 +20,7 @@
 //               activeClassName="active"
 //               exact to='/'> Home</NavLink>
 //             <NavLink
-//               to='/menu'> Menu</NavLink>
+//               to='/menu'> Sides</NavLink>
 //             <NavLink
 //               to='/checkout'>Checkout</NavLink>
 //           </div>

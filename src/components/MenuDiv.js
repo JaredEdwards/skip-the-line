@@ -6,17 +6,24 @@ class MenuDiv extends Component {
   constructor (props) {
     super(props);
     this.state ={
-      name: this.props.categoryName
+      name: this.props.categoryName,
+      menu: '',
+      menuToDisplay: '',
+      menuShowing: true
     }
-    this.getMenu =this.getMenu.bind(this);
+    let menuToDisplay = this.state.menuToDisplay;
+    this.menuRef = database.ref(`/${menuToDisplay}`);
   }
-  getMenu(e) {
-    console.log(`${this.state.name} actually MenDiv sworked`);
-    // RENDER NEW CLASS HERE
+  componentDidMount(){
+    this.menuRef.once('value', (snapshot) => {
+      this.setState({menu: snapshot.val()});
+      // console.log(`MenuItems: `, this.state.menu );
+    });
   }
 
+
   render(){
-    const { categoryName } = this.props;
+    const { categoryName, menu } = this.props;
     return (
       <div className='flex-container-1'>
         <div

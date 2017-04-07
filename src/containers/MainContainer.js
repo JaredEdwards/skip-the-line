@@ -15,7 +15,28 @@ import Routes from '../config/Routes';
 import ContentContainer from '../containers/ContentContainer';
 
 class MainContainer extends Component {
+  constructor( props ) {
+    super( props );
+    this.state = {
+      menu: '',
+      menuShowing: true
+    }
+    let menuToDisplay = this.state.menuToDisplay;
+    this.menuRef = database.ref(`/menus/desserts`);
+    this.getMenu =this.getMenu.bind(this);
+  }
+  componentDidMount() {
+    this.menuRef.once('value', (snapshot) => {
+        this.setState({menu: snapshot.val()});
+    });
+
+  }
+  getMenu(e) {
+    console.log(`${this.state.name} actually MenuDiv worked`);
+    console.log("PROPS", this.props);
+  }
   render(){
+    const { menu } = this.state;
   return (
       <div className="col-md-9 col-sm-8 right-box">
         {this.props.children}

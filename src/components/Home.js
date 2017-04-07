@@ -15,7 +15,9 @@ import ContentContainer from '../containers/ContentContainer';
 
 class Home extends Component {
   render() {
-    return <ContentContainer className="App col-md-12 container-fluid" />
+    return (
+      <ContentContainer className="App col-md-12 container-fluid" />
+    )
   }
 }
 

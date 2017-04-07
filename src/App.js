@@ -15,101 +15,50 @@ import UserContainer from './containers/UserContainer';
 import ContentContainer from './containers/ContentContainer';
 // import createFragment from 'react-addons-create-fragment'; // ES6
 
-
-
 // import Navigation from './Navigation'
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // currentUser: null,
+          currentUser: null,
             menu: '',
             menuToDisplay: 'menus'
         };
-
         let menuToDisplay = this.state.menuToDisplay;
-
-        this.menuRef = database.ref(`/${menuToDisplay}`);
+        this.menuRef = database.ref(`/menus`);
     }; // END OF CONSTRUCTOR
 
     componentDidMount() {
-        // auth.onAuthStateChanged((currentUser) => {
-        //     this.setState({currentUser})
-        //     this.menuRef.on('value', (snapshot) => {
-        //         this.setState({menu: snapshot.val()});
-        //         // console.log(`MenuItems: `, this.state.menu );
-        //     });
-        // }); //END OF AUTSTATECHANGED
+      console.log("component did mount");
+      auth.onAuthStateChanged((currentUser) => {
+          this.setState({currentUser})
+          this.menuRef.once('value', (snapshot) => {
+              this.setState({menu: snapshot.val()});
+              // console.log(`MenuItems: `, this.state.menu );
+          });
+      }); //END OF AUTSTATECHANGED
+
+
 
         //Get a snapshot of the current state of the database
-        this.menuRef.on('value', (snapshot) => {
+        this.menuRef.once('value', (snapshot) => {
             this.setState({menu: snapshot.val()});
         });
-
     }; //END OF COMPONENT DID MOUNT
-
-
     render() {
-        // currentUser,
-        const { menu} = this.state;
+        const {menu, currentUser} = this.state;
         return (
             <div className="container-fluid">
-              <div className="jumbotron font App">
-                <h1>Skip the Line</h1>
-              </div>
-
-            <Routes />
-
-
-
-            {/* <div className="App col-md-12 container-fluid"> */}
-            {/* <ContentContainer> */}
-
-           {/* <UserContainer /> */}
-
-
-
-            {/* <div className="col-md-9 col-sm-8 right-box"> */}
-            {/* { currentUser ? */}
-              {/* <div>
-                  <MainContainer menu={menu}>
-                  <code>Map over these elements </code>
-
-                    {
-                      map(menu, (item, key) =>  {
-                      return (
-                        <MenuDiv
-                          ref={key}
-                          key={key}
-                          onClick={this.getMenuItems}
-                          categoryName={key} />
-                        ) //end return
-                      })
-                    }
-
-                </MainContainer>
-            </div> */}
-
-          {/* } */}
-
-        {/* </ContentContainer> */}
-        </div> // END OF APP class
-
+                <div className="jumbotron font App">
+                    <h1>Skip the Line</h1>
+                </div>
+                <Routes user={currentUser} menu={menu} />
+            </div>
         ); //END OF RETURN
-
     }; // END OF RENDER FUNCTION
-
 }; //END OF APP COMPONENT
 
 
-const Welcome = () => {
-    return (
-      <div>
-        <h1> # Welcome!</h1>
-        <h3> # Filler Message goes here</h3>
-      </div>
-    )
-}
 
 export default App;

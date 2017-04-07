@@ -5,17 +5,7 @@ import map from 'lodash/map';
 import '../styles/MenuItemDisplay.css'
 import '../styles/MenuDiv.css';
 import createFragment from 'react-addons-create-fragment'; // ES6
-// import {NavbarHeader,
-//   Navbar,
-//   NavItem,
-//   MenuItem,
-//   Nav,
-//   NavDropdown,
-//   PanelGroup,
-//   Accordion,
-//   Panel
-// } from 'react-bootstrap';
-// import Collapsible from 'react-collapsible';
+
 
 
 class MenuItemDiv extends Component {
@@ -23,6 +13,7 @@ class MenuItemDiv extends Component {
         super(...args);
     }
     render() {
+      console.log("inside menu item ",this.props);
         const { itemName } = this.props;
         return (
           <div className="flex-container-1">

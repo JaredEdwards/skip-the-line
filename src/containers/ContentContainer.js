@@ -19,51 +19,60 @@ class ContentContainer extends Component {
         this.state = {
             currentUser: null,
             menu: '',
-            menuToDisplay: 'menus'
+            menuToDisplay: '',
+            menuShowing: true
         }
-        this.getMenuItems = this.getMenuItems.bind(this);
+        this.getMenu =this.getMenu.bind(this);
         let menuToDisplay = this.state.menuToDisplay;
-        this.menuRef = database.ref(`/${menuToDisplay}/desserts`);
+
+        ///THIS IS THE ONLY CALL TO THE DB
+        this.menuRef = database.ref(`/menus/`);
     }
     componentDidMount() {
         auth.onAuthStateChanged((currentUser) => {
             this.setState({currentUser})
-            this.menuRef.on('value', (snapshot) => {
+            this.menuRef.once('value', (snapshot) => {
                 this.setState({menu: snapshot.val()});
                 // console.log(`MenuItems: `, this.state.menu );
             });
         }); //END OF AUTSTATECHANGED
-
     } //END OF COMPONENT DID MOUNT
-    getMenuItems() {
-      console.log(`${name} actually worked`);
-      // this.setState({hidden: ! this.state.isHidden})
-    }
 
+    getMenu(e) {
+      console.log(`${this.state.name} actually MenuDiv worked`);
+      this.setState({
+        menuToDisplay: `menus/${this.props.categoryName}`
+      })
+      console.log(`STATE`, this.state);
+      console.log(`PROPS`, this.props);
+      this.menuRef.on('value', (snapshot) => {
+        this.setState({menu: snapshot.val()});
+      });
+    }
     render() {
         const {currentUser, menu} = this.state;
+
         return (
             <div>
-                <UserContainer>
-                    {currentUser
-                        ? <CurrentUser user={currentUser}/>
-                        : <SignIn/>}
-                </UserContainer>
-                <MainContainer>
-                    {
-                      map(menu, (item, key) =>  {
-                      return (
-                        <MenuItemDiv
-                          key={key}
-                          itemName={item} />
-                        ) //end return
-                      })
-                    }
+
+                <MainContainer menu={menu}>
+
                 </MainContainer>
             </div>
         )
     }
 
+}
+
+const Welcome = () => {
+    return (
+        <div>
+            <h1>
+                # Welcome!</h1>
+            <h3>
+                # Filler Message goes here</h3>
+        </div>
+    )
 }
 
 export default ContentContainer;

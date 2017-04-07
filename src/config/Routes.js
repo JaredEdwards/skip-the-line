@@ -23,15 +23,22 @@ import {
 
 import NavigationBar from '../components/NavigationBar'
 import Home from '../components/Home';
-import MenuDiv from '../components/MenuDiv';
+import Entrees from '../components/Entrees'
+import Sides from '../components/Sides';
+import Desserts from '../components/Desserts'
+import Drinks from '../components/Drinks'
 // import MenuItem from '../components/MenuItems';
 import Summary from '../components/Summary';
 // import Controller from '../components/Controller';
 
 
+
 // THIS IS ROUTER ROUTE GETS path=""
 
 class Routes extends Component {
+  componentDidMount() {
+    console.log("Routes mounted");
+  }
   render() {
     return (
       <Router>
@@ -39,8 +46,11 @@ class Routes extends Component {
           <NavigationBar />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/menu' component={MenuDiv} />
+            <Route path='/sides' component={Sides} />
             <Route path='/summary' component={Summary} />
+            <Route path='/desserts' component={Desserts} />
+            <Route path='/drinks' component={Drinks} />
+            <Route path='/entrees' component={Entrees} />
           </Switch>
         </div>
       </Router>
